@@ -22,7 +22,7 @@ flowchart LR
         B1["Raspberry Pi 5<br/>+ generative AI accelerator"]
     end
     subgraph C["Node C: Reasoning"]
-        C1["MacBook Pro M1 Max<br/>35B multimodal model"]
+        C1["35B 3b MOE ornith 1.5 model,<br/>patiently waiting for the qwen 3.8 35B MOE"]
     end
     subgraph M["Motion controller"]
         M1["ESP32<br/>PID · encoders · heartbeat · E-stop"]

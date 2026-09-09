@@ -56,7 +56,7 @@ flowchart LR
         B2["Speech-to-text<br/>· fast option selector"]
     end
     subgraph C["Node C: Reasoning"]
-        C1["MacBook Pro M1 Max<br/>35B multimodal model"]
+        C1["35B 3b MOE ornith 1.5 model,<br/>patiently waiting for the qwen 3.8 35B MOE"]
         C2["Decision generation<br/>· long-term memory"]
     end
     subgraph M["Motion controller"]

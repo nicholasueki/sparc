@@ -241,6 +241,8 @@ Running continuously on real hardware:
 | Head movement and social orientation | Planned |
 | Safe mobile embodiment | Planned |
 | Navigation, docking, and sustained autonomy | Future |
+| Memory fine-tune: dataset generation and training on a DGX Spark | 🚧 In progress |
+| CAD model → URDF → Isaac Sim / Gazebo, fine-tune an open-source VLA (π0 or similar) for movement | 🚧 In progress |
 
 ---
 

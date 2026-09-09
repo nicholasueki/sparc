@@ -54,8 +54,14 @@ flowchart LR
 - Can't claim an action it didn't take. That's enforced in code.
 - Every service restarts on its own after a crash or power cut, on all three machines
 
-Next up: reliable multi-person identity, wiring decisions through to motor commands, then safe
-mobile operation. Full roadmap in [docs/DESIGN.md](docs/DESIGN.md).
+## In progress
+
+- Building a dataset to fine-tune the memory model. Dataset generation and the fine-tune both run
+  on a DGX Spark.
+- CAD model of the rover. It becomes a URDF for Isaac Sim and Gazebo, where the plan is to
+  fine-tune an open-source VLA (π0 or similar) for movement: photons in, motor commands out.
+- Reliable multi-person identity, then wiring decisions through to motor commands, then safe
+  mobile operation. Full roadmap in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Decisions worth asking me about
 

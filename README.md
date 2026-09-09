@@ -11,9 +11,7 @@ earlier projects.
 
 ## How it's built
 
-Three computers, one job each, on a local network. An ESP32 owns the motors so no software crash
-can leave the wheels running.
-
+Three computers with dedicated tasks connected locally to each other through ethernet sending commands to a mini ESP32 that controls the motors and servos.
 ```mermaid
 flowchart LR
     subgraph IN["Inputs"]
@@ -34,17 +32,34 @@ flowchart LR
     THINK --> SPK
 ```
 
-- Power: 100 W solar panel, 256 Wh battery, 25 to 39 W typical draw. About 5.5 to 8.5 hours with
-  no sun. Compute and motors run on separate fused rails.
-- Perception: an on-sensor detector is always on for near zero power. A Qwen 3 vision model on
-  the accelerator wakes on events. The 35B model runs only when asked.
-- Decisions: the reasoning model proposes three actions, a small personality model picks one as a
+- Power: 100 W flex solar panel, 256 Wh battery, 25 to 39 W typical draw. About 5.5 to 8.5 hours with
+  no sun. Compute and motors run on separate fused rails each with smaller battery packs that act as "capacitors"/buffers for stability and to avoid voltage spikes.
+- Perception: A raspberry pi ai camera is always on at very low wattage constantly analyzing the scene. A Qwen 3 vision model on
+  the accelerator is prompted by that si camera. The 35B 3b MOE model then gets prompted by that accelerator.
+- Decisions: the 35B reasoning model proposes three actions (literally Option A, Option B, or Option C), a small personality model picks one as a
   single token, and deterministic code re-checks the pick against live state before anything moves
-  or speaks.
+  or speaks. For example:
+    Input:
+          Scene: Alice and Bob appear on screen
+    Output:
+          Option A:
+              Decision: Greet Alice and Bob
+              Speech: "Hey Alice! Hey Bob!"
+              Motor: move forward and face them.
+          Option B:
+              Decision: Greet only Alice, avoid Bob because he tends to test my behavior with a hockey stick.
+              Speech: "Hey Alice!"
+              Motor: move away from Bob while facing Alice.
+          Option C:
+              Decision: move away from both Alice and Bob discretely.
+              Speech: ""
+              Motor: move away and avoid eye contact.
+        
+      
 - Memory: faces stored as vectors and matched by cosine lookup. Events filed against relative
   time ("Nick came in right before he said hi").
 - Motion: three layers, each able to veto the one above. ESP32 runs PID at 200+ Hz with a
-  heartbeat watchdog. Lost heartbeat means stop within 500 ms. A hardware E-stop cuts the motor
+  heartbeat watchdog. Lost heartbeat means stop within 500 ms. A physical E-stop cuts the motor
   drivers.
 
 ## What works today
@@ -68,7 +83,7 @@ flowchart LR
 
 Raspberry Pi 5 ×2 · AI accelerators · on-sensor AI camera · ESP32 · BTS7960 drivers · encoder
 gearmotors · INA260 power monitor · Python · Pydantic · MQTT · SQLite + vector search · C/C++
-firmware · systemd/launchd · Qwen 3 VLM · 35B multimodal model on MLX
+firmware · systemd/launchd · Qwen 3 VLM · Ornith 1.5 35B multimodal model on MLX
 
 ## In this repo
 

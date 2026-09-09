@@ -15,22 +15,22 @@ can leave the wheels running.
 
 ```mermaid
 flowchart LR
-    subgraph A["Node A: Vision"]
-        A1["Raspberry Pi 5<br/>+ 26 TOPS AI accelerator<br/>+ on-sensor AI camera"]
+    subgraph IN["Inputs"]
+        CAM["AI camera"]
+        US["Ultrasonic sensor"]
+        MIC["Microphone"]
     end
-    subgraph B["Node B: Speech & local AI"]
-        B1["Raspberry Pi 5<br/>+ generative AI accelerator"]
+    subgraph THINK["Reasoning"]
+        PI["2× Raspberry Pi 5<br/>+ AI accelerators"]
+        LAP["Laptop<br/>35B 3b MOE ornith 1.5 model,<br/>patiently waiting for the qwen 3.8 35B MOE"]
     end
-    subgraph C["Node C: Reasoning"]
-        C1["35B 3b MOE ornith 1.5 model,<br/>patiently waiting for the qwen 3.8 35B MOE"]
+    subgraph OUT["Outputs"]
+        MOT["ESP32 motor controller<br/>PID · encoders · E-stop"]
+        SPK["Speaker"]
     end
-    subgraph M["Motion controller"]
-        M1["ESP32<br/>PID · encoders · heartbeat · E-stop"]
-    end
-    A <--> B
-    B <--> C
-    A <--> C
-    B --> M
+    IN --> THINK
+    THINK --> MOT
+    THINK --> SPK
 ```
 
 - Power: 100 W solar panel, 256 Wh battery, 25 to 39 W typical draw. About 5.5 to 8.5 hours with

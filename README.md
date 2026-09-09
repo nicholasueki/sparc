@@ -3,7 +3,7 @@
 A solar-powered rover that sees, listens, talks, remembers people, and decides what to do on its
 own. Everything runs on local hardware. No cloud.
 
-![100 W flexible solar panel on the 256 Wh power station](media/photos/solar_panel_and_power_station.jpg)
+![100 W flexible solar panel on the 256 Wh power station](media/photos/solar_panel_and_power_station_cutout.jpg)
 
 ## How it's built
 

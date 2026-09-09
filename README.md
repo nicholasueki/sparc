@@ -293,6 +293,32 @@ model for action selection
 
 ---
 
-> This repository is a public showcase of the project's design and results. The robot's source
-> code and the operational documents for the live system are kept in a separate private
-> repository.
+## Build photos
+
+![100 W flexible solar panel on the 256 Wh power station](media/photos/solar_panel_and_power_station.jpg)
+
+---
+
+## Code in this repository
+
+The full fleet implementation lives in a separate private repository. What is public here:
+
+| Path | What it is |
+|---|---|
+| [`firmware/esp32_motion/`](firmware/esp32_motion/) | ESP32 drive and encoder test firmware: quadrature decoding in an interrupt, BTS7960 PWM control, serial command loop. Boots with motors off. |
+| [`hardware_tests/`](hardware_tests/) | Pi bring-up scripts: I2C and GPIO discovery, servo channel finder, ultrasonic range check, manual pan-tilt with soft limits. |
+| [`docs/EVAL.md`](docs/EVAL.md) | The eval runs that tuned the reasoning prompt and the long-horizon memory path, with pass rates and latencies. |
+
+### The private repo by the numbers
+
+| | |
+|---|---|
+| Python, excluding tests | 9,600 lines across four packages (common, node A, node B, node C) |
+| Tests | 101 pytest cases, hardware mocked by fixtures, runnable on a laptop |
+| Commits | 42 since June 2026 |
+| Services | 5 supervised daemons across 2 Raspberry Pis (systemd) and 1 Mac (launchd) |
+| Reasoning eval | 8/8 scenarios pass with the final persona, 100% schema-valid output over 28 calls, ~4 s per decision at 3 options |
+| Memory eval | 6/6 facts distilled from a 16-event scripted day and recalled correctly the next day through the real retrieval path |
+| Locked dependencies | separate pinned lockfiles for each node's OS and Python version |
+
+Source access on request.

@@ -63,18 +63,6 @@ flowchart LR
 - Reliable multi-person identity, then wiring decisions through to motor commands, then safe
   mobile operation. Full roadmap in [docs/DESIGN.md](docs/DESIGN.md).
 
-## Decisions worth asking me about
-
-- MQTT with typed Pydantic messages instead of ROS 2. ROS 2 doesn't install on the Pi OS the
-  accelerator drivers need. Every message is a validated schema, so switching later touches one
-  module.
-- The language model returns one letter from a menu that ordinary code built. The failure surface
-  is one character or a fallback.
-- Prompts have hard token budgets. The accelerator caps context at 4096 tokens and runs at
-  about 9.5 tokens per second.
-- 270:1 gearing caps speed at 0.084 m/s. Slow keeps the loop stable and the robot safe around
-  people.
-
 ## Tech
 
 Raspberry Pi 5 ×2 · AI accelerators · on-sensor AI camera · ESP32 · BTS7960 drivers · encoder

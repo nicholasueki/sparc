@@ -99,5 +99,5 @@ firmware · systemd/launchd · Qwen 3 VLM · Ornith 1.5 35B multimodal model on 
 | [`docs/DESIGN.md`](docs/DESIGN.md) | Full design notes: architecture, AI pipeline, power, motion, trade-offs. |
 | [`docs/EVAL.md`](docs/EVAL.md) | Eval runs that tuned the reasoning prompt and memory path. |
 
-The fleet software is in a private repo: 9,600 lines of Python across four packages, 101 pytest
-cases, 5 supervised services. Source access on request.
+The fleet software is open source at [nicholasueki/sparc-code](https://github.com/nicholasueki/sparc-code):
+9,600 lines of Python across four packages, 101 pytest cases, 5 supervised services. MIT license.

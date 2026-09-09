@@ -1,7 +1,8 @@
 # SPARC: Solar Powered Autonomous Rover Companion
 
-A solar-powered rover that sees, listens, talks, remembers people, and decides what to do on its
-own. Everything runs on local hardware. No cloud.
+A solar-powered rover that sees, listens, talks, remembers people (embedding model), and decides
+what to do on its own, including looking for sunlight to charge. Everything runs on local
+hardware. No cloud. Inspired by Wall-E, R2-D2, and Rocky from Project Hail Mary.
 
 ![100 W flexible solar panel on the 256 Wh power station](media/photos/solar_panel_and_power_station_cutout.jpg)
 

@@ -5,6 +5,9 @@ own. Everything runs on local hardware. No cloud.
 
 ![100 W flexible solar panel on the 256 Wh power station](media/photos/solar_panel_and_power_station_cutout.jpg)
 
+The body is a Home Depot plastic storage container. Most of the electronics are repurposed from
+earlier projects.
+
 ## How it's built
 
 Three computers, one job each, on a local network. An ESP32 owns the motors so no software crash

@@ -36,26 +36,31 @@ flowchart LR
   no sun. Compute and motors run on separate fused rails each with smaller battery packs that act as "capacitors"/buffers for stability and to avoid voltage spikes.
 - Perception: A raspberry pi ai camera is always on at very low wattage constantly analyzing the scene. A Qwen 3 vision model on
   the accelerator is prompted by that si camera. The 35B 3b MOE model then gets prompted by that accelerator.
-- Decisions: the 35B reasoning model proposes three actions (literally Option A, Option B, or Option C), a small personality model picks one as a
-  single token, and deterministic code re-checks the pick against live state before anything moves
-  or speaks. For example:
-    Input:
-          Scene: Alice and Bob appear on screen
-    Output:
-          Option A:
-              Decision: Greet Alice and Bob
-              Speech: "Hey Alice! Hey Bob!"
-              Motor: move forward and face them.
-          Option B:
-              Decision: Greet only Alice, avoid Bob because he tends to test my behavior with a hockey stick.
-              Speech: "Hey Alice!"
-              Motor: move away from Bob while facing Alice.
-          Option C:
-              Decision: move away from both Alice and Bob discretely.
-              Speech: ""
-              Motor: move away and avoid eye contact.
-        
-      
+- Decisions: the 35B reasoning model proposes three actions (literally Option A, Option B, or
+  Option C), a small personality model picks one as a single token, and deterministic code
+  re-checks the pick against live state before anything moves or speaks. For example:
+
+  ```
+  Input:
+    Scene: Alice and Bob appear on screen
+
+  Output:
+    Option A:
+      Decision: Greet Alice and Bob
+      Speech:   "Hey Alice! Hey Bob!"
+      Motor:    move forward and face them.
+
+    Option B:
+      Decision: Greet only Alice, avoid Bob because he tends to test my behavior with a hockey stick.
+      Speech:   "Hey Alice!"
+      Motor:    move away from Bob while facing Alice.
+
+    Option C:
+      Decision: move away from both Alice and Bob discretely.
+      Speech:   ""
+      Motor:    move away and avoid eye contact.
+  ```
+
 - Memory: faces stored as vectors and matched by cosine lookup. Events filed against relative
   time ("Nick came in right before he said hi").
 - Motion: three layers, each able to veto the one above. ESP32 runs PID at 200+ Hz with a
